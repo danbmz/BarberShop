@@ -1,0 +1,32 @@
+<?php 
+
+require_once __DIR__ . '/../includes/app.php';
+
+use Controllers\LoginController;
+use Controllers\HomeController;
+use MVC\Router;
+
+$router = new Router();
+
+// Rutas para pagina web
+$router->get('/', [HomeController::class, 'index']);
+$router->get('/services', [HomeController::class, 'services']);
+$router->get('/aboutUs', [HomeController::class, 'aboutUs']);
+$router->get('/contact', [HomeController::class, 'contact']);
+
+// Rutas para iniciar-cerrar sesion
+$router->get('/login', [LoginController::class, 'login']);
+$router->post('/login', [LoginController::class, 'authenticate']);
+$router->get('/logout', [LoginController::class, 'logout']);
+// Crear nueva cuenta
+$router->get('/register', [LoginController::class, 'register']);
+$router->post('/register', [LoginController::class, 'store']);
+// Recuperar-resetear password
+$router->get('/forgot-password', [LoginController::class, 'forgot']);
+$router->post('/forgot-password', [LoginController::class, 'sendResetLink']);
+$router->get('/reset-password', [LoginController::class, 'reset']);
+$router->post('/reset-password', [LoginController::class, 'updatePassword']);
+
+
+// Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
+$router->comprobarRutas();

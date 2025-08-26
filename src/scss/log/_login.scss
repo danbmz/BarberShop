@@ -1,0 +1,88 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.main-container {
+    width: min(90%, 600px);
+    margin: 5rem auto;
+}
+.login-section {
+    background-color: v.$blanco;
+    padding: 3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    gap: 4rem;
+}
+.login-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+/* --- Grupos de formulario --- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 1.5rem;
+    color: v.$gris-opaco;
+    margin-bottom: 0.6rem;
+}
+
+.form-input {
+    padding: 1rem 1.2rem;
+    border: 1px solid v.$gris-claro;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+    border-color: v.$lila; /* Azul violeta */
+    box-shadow: 0 0 6px rgba(79, 70, 229, 0.3);
+}
+
+/* --- Botón --- */
+.btn-submit {
+    background-color: v.$lila;
+    color: v.$blanco;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 1.4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: v.$lila-opaco;
+}
+
+.btn-submit:active {
+    transform: scale(0.97);
+}
+
+/* --- Links --- */
+.form-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    margin-top: 0.8rem;
+}
+
+.link {
+    color: v.$lila;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.link:hover {
+    color: v.$lila-opaco;
+    font-weight: 600;
+}
