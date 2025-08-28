@@ -8,7 +8,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 0;
 }
 .logo {
     display: flex;
@@ -16,12 +15,16 @@
     justify-content: center;
     h1 {
         color: v.$blanco;
+        font-size: 3rem;
     }
 }
 .nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    display: none;
+    @include m.tablet {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
 }
 .login-button {
     background-color: transparent;
@@ -35,6 +38,19 @@
     background-color: v.$lila;
     color: v.$blanco;
 }
+
+.menu-despegable {
+    background-color: v.$lila;
+    color: v.$blanco;
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    @include m.tablet {
+        display: none;
+    }
+}
+
 // Footer
 
 .footer {
@@ -44,17 +60,25 @@
     padding: 3rem 0;
 }
 .enlaces-contenedor {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
 }
 .redes-contenedor {
-    grid-column: 1/3;
+    margin-bottom: 1.5rem;
+    p {
+        color: v.$gris-claro;
+    }
+    @include m.tablet {
+        grid-column: 1/3;
+    }
 }
 .logo-footer {
     display: flex;
     gap: 2rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: v.$blanco;
     margin-bottom: 1rem;
@@ -63,8 +87,15 @@
     display: flex;
     gap: 2rem;
 }
-.servicios-contenedor h3 {
-    text-align: left;
+.servicios-contenedor {
+    margin-bottom: 1.5rem;
+    h3 {
+        text-align: left;
+        color: v.$blanco;
+    }
+    p {
+        color: v.$gris-claro;
+    }
 }
 .servicios-contenedor ul {
     list-style: none;
@@ -79,4 +110,7 @@
     padding-top: 2rem;
     border-top: 1px solid v.$blanco;
     margin-top: 2rem;
+    p {
+        color: v.$gris-claro;
+    }
 }

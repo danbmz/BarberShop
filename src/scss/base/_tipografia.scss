@@ -1,25 +1,49 @@
 @use "variables" as v;
+@use "mixins" as m;
 
 h1,
 h2,
 h3 {
     font-family: v.$fuente_principal;
     margin: 0;
-    font-weight: 900;
+    font-weight: 700;
     text-align: center;
 }
 
 h1 {
-    font-size: 3.6rem;
+    font-size: 2.5rem;
+    @include m.tablet {
+        font-size: 2.8rem;
+    }
+    @include m.desktop {
+        font-size: 3.6rem;
+    }
 }
 h2 {
-    font-size: 3.6rem;
+    font-size: 2rem;
+    @include m.tablet {
+        font-size: 2.3rem;
+    }
+    @include m.desktop {
+        font-size: 3rem;
+    }
 }
 h3 {
-    font-size: 3rem;
-    text-align: center;
+    font-size: 1.5rem;
+    @include m.tablet {
+        font-size: 1.8rem;
+    }
+    @include m.desktop {
+        font-size: 2.5rem;
+    }
 }
 p {
-    color: v.$blanco;
-    font-size: 2rem;
+    color: v.$gris-opaco;
+    font-size: 1.6rem;
+    @include m.tablet {
+        font-size: 1.8rem;
+    }
+    @include m.desktop {
+        font-size: 2rem;
+    }
 }

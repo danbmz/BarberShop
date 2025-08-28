@@ -12,7 +12,7 @@
         <div class="header-contenedor contenedor">
             <div class="nav-logo-contendedor">
                 <a href="/" class="logo">
-                    <!-- Agregar SVG -->
+                    <p>*</p>
                     <h1>BarberShop</h1>
                 </a>
             
@@ -22,6 +22,10 @@
                     <a href="/contact">Contacto</a>
                     <a href="/login" class="login-button">iniciar sesión</a>   
                 </nav>
+
+                <div class="menu-despegable">
+                    <p>Menu Despegable</p>
+                </div>
             </div>
         </div>
     </header>
