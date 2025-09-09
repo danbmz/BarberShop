@@ -1,4 +1,4 @@
-@use "login";
-@use "register";
-@use "forgot";
-@use "reset";
+@forward "login";
+@forward "register";
+@forward "forgot";
+@forward "reset";

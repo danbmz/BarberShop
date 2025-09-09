@@ -1,4 +1,4 @@
-@use "aboutUs";
-@use "services";
-@use "contact";
-@use "main";
+@forward "aboutUs";
+@forward "services";
+@forward "contact";
+@forward "main";

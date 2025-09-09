@@ -123,6 +123,13 @@ class ActiveRecord {
         return array_shift( $resultado ) ;
     }
 
+    // Obtiene 1 registro 
+    public static function where($column, $value) {
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE $column = '$value'";
+        $resultado = self::consultarSQL($query);
+        return array_shift( $resultado ) ;
+    }
+
     // crea un nuevo registro
     public function crear() {
         // Sanitizar los datos

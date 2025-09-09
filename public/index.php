@@ -16,12 +16,16 @@ $router->get('/contact', [HomeController::class, 'contact']);
 
 // Rutas para iniciar-cerrar sesion
 $router->get('/login', [LoginController::class, 'login']);
-$router->post('/login', [LoginController::class, 'authenticate']);
+$router->post('/login', [LoginController::class, 'login']);
 $router->get('/logout', [LoginController::class, 'logout']);
 // Crear nueva cuenta
 $router->get('/register', [LoginController::class, 'register']);
-$router->post('/register', [LoginController::class, 'store']);
-// Recuperar-resetear password
+$router->post('/register', [LoginController::class, 'register']);
+// Confirmar cuenta
+$router->get('/confirm-account', [LoginController::class, 'confirm']);
+$router->get('/message', [LoginController::class, 'message']);
+
+// Recuperar-resetear password  
 $router->get('/forgot-password', [LoginController::class, 'forgot']);
 $router->post('/forgot-password', [LoginController::class, 'sendResetLink']);
 $router->get('/reset-password', [LoginController::class, 'reset']);

@@ -1,0 +1,20 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.alerta {
+    margin: 0.5rem 0;
+    color: v.$blanco;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+.alerta:last-of-type {
+    margin-bottom: 2rem;
+}
+.error {
+    background-color: v.$error;
+}
+.exito {
+    background-color: v.$exito;
+}
