@@ -82,19 +82,3 @@
     color: v.$gris-opaco;
     margin-bottom: 15px;
 }
-
-/* Botón */
-.btn {
-    background: v.$lila;
-    color: v.$blanco;
-    border: none;
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.btn:hover {
-    background: v.$lila-opaco;
-}

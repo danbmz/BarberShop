@@ -73,39 +73,6 @@
         gap: 3rem;
     }
 }
-.citas-button {
-    padding: 1rem 2rem;
-    color: v.$blanco;
-    background-color: v.$lila;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    @include m.tablet {
-        padding: 1.5rem 2.5rem;
-        font-size: 1.8rem;
-    }
-}
-.servicios-button {
-    padding: 1rem 2rem;
-    color: v.$blanco;
-    background-color: transparent;
-    border: 1px solid v.$blanco;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    @include m.tablet {
-        padding: 1.5rem 2.5rem;
-        font-size: 1.8rem;
-    }
-}
-.citas-button:hover {
-    background-color: v.$lila-opaco;
-    color: v.$blanco;
-}
-.servicios-button:hover {
-    background-color: v.$blanco;
-    color: v.$negro;
-}
 .details-contenedor {
     display: flex;
     gap: 2rem;

@@ -1,0 +1,9 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.title-page {
+    margin: 4rem 0;
+    @include m.tablet {
+        margin: 5rem 0;
+    }
+}

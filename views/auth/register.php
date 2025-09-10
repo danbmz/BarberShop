@@ -1,13 +1,13 @@
-<main class="main-container">
-    <section class="register-section">
-        <h1 class="register-title">Crear Cuenta</h1>
-        <p class="register-subtitle">
+<main class="form-container">
+    <section class="form-section">
+        <h2 class="form-title">Crear Cuenta</h2>
+        <p class="form-subtitle">
             Completa el formulario para registrarte y acceder al sistema.
         </p>
 
         <?php include_once __DIR__ . '/../templates/alertas.php';?>
         
-        <form action="/register" method="POST" class="register-form">
+        <form action="/register" method="POST" class="general-form">
             <!-- Nombre -->
             <div class="form-group">
                 <label for="nombre" class="form-label">Nombre</label>
@@ -86,7 +86,7 @@
 
             <!-- Botón -->
             <div class="form-actions">
-                <button type="submit" class="btn-submit">Registrarse</button>
+                <button type="submit" class="btn">Registrarse</button>
             </div>
 
             <!-- Link -->

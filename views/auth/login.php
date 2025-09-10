@@ -1,8 +1,8 @@
-<main class="main-container">
-    <section class="login-section">
-        <h1 class="login-title">Bienvenido a BarberShop</h1>
+<main class="form-container">
+    <section class="form-section">
+        <h2 class="form-title">Bienvenido a BarberShop</h2>
         
-        <form action="/login" method="POST" class="login-form">
+        <form action="/login" method="POST" class="general-form">
             <!-- Campo de email -->
             <div class="form-group">
                 <label for="email" class="form-label">Correo electrónico</label>
@@ -29,7 +29,7 @@
 
             <!-- Botón de enviar -->
             <div class="form-actions">
-                <button type="submit" class="btn-submit">Ingresar</button>
+                <button type="submit" class="btn">Ingresar</button>
             </div>
 
             <!-- Links de ayuda -->

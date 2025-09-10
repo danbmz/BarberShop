@@ -1,11 +1,11 @@
-<main class="main-container">
-    <section class="recover-section">
-        <h1 class="recover-title">Recuperar Contraseña</h1>
-        <p class="recover-subtitle">
+<main class="form-container">
+    <section class="form-section">
+        <h2 class="form-title">Recuperar Contraseña</h2>
+        <p class="form-subtitle">
             Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
         </p>
       
-        <form action="/forgot-password" method="POST" class="recover-form">
+        <form action="/forgot-password" method="POST" class="general-form">
             <!-- Campo de email -->
             <div class="form-group">
             <label for="email" class="form-label">Correo electrónico</label>
@@ -20,7 +20,7 @@
 
             <!-- Botón de enviar -->
             <div class="form-actions">
-            <button type="submit" class="btn-submit">Enviar enlace</button>
+            <button type="submit" class="btn">Enviar enlace</button>
             </div>
 
             <!-- Link de regreso -->
