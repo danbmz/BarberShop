@@ -1,6 +1,8 @@
 <main class="form-container">
     <section class="form-section">
         <h2 class="form-title">Bienvenido a BarberShop</h2>
+
+        <?php include_once __DIR__ . '/../templates/alertas.php';?>
         
         <form action="/login" method="POST" class="general-form">
             <!-- Campo de email -->
@@ -12,6 +14,7 @@
                     name="email" 
                     class="form-input" 
                     placeholder="tucorreo@ejemplo.com" 
+                    value="<?php echo s($auth->email) ?>"
                     required>
             </div>
 

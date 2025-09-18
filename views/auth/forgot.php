@@ -5,6 +5,8 @@
             Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
         </p>
       
+        <?php include_once __DIR__ . '/../templates/alertas.php';?>
+
         <form action="/forgot-password" method="POST" class="general-form">
             <!-- Campo de email -->
             <div class="form-group">

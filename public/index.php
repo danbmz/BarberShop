@@ -27,9 +27,9 @@ $router->get('/message', [LoginController::class, 'message']);
 
 // Recuperar-resetear password  
 $router->get('/forgot-password', [LoginController::class, 'forgot']);
-$router->post('/forgot-password', [LoginController::class, 'sendResetLink']);
+$router->post('/forgot-password', [LoginController::class, 'forgot']);
 $router->get('/reset-password', [LoginController::class, 'reset']);
-$router->post('/reset-password', [LoginController::class, 'updatePassword']);
+$router->post('/reset-password', [LoginController::class, 'reset']);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

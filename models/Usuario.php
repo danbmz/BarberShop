@@ -28,7 +28,7 @@ class Usuario extends ActiveRecord{
         $this->confirmado = $args['confirmado'] ?? '0';
         $this->token = $args['token'] ?? '';
     }
-    // Valida los campos del formulario
+    // Valida los campos del formulario de Registro
     public function validar(){
         if (!$this->nombre) {
             self::$alertas['error'][] = 'Ingresa un nombre';
@@ -65,6 +65,35 @@ class Usuario extends ActiveRecord{
     public function generarToken(){
         $this->token = uniqid();
     }
-
+    // Valida los campos del formulario Login
+    public function validarLogin(){
+        if (!$this->email || !$this->password) {
+            self::$alertas['error'][] = 'Ingresa tus datos para iniciar sesión';
+        }
+        return self::$alertas;
+    }
+    // Verifica que se haya confirmado una cuenta
+    public function isConfirmed(){
+        if(!$this->confirmado){
+            self::$alertas['error'][] = 'No haz confirmado tu cuenta';
+            return false;
+        }
+        return true;
+    }
+    // Compara la contraseña escrita con la de la DB
+    public function verifyPassword($password){
+        $resultado = password_verify($password, $this->password);
+        if (!$resultado) {
+            self::$alertas['error'][] = 'Contraseña incorrecta';
+        } 
+        return $resultado;
+    }
+    // Valida el formato de la contrasena ingresada (formulario reset)
+    public function validatePassword(){
+        if (!preg_match('/^(?=.*\d).{6,}$/', $this->password)) {
+            self::$alertas['error'][] = 'Ingresa al menos 6 caracteres incluido un numero';
+        }
+        return self::$alertas;
+    }
 }
 

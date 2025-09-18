@@ -51,4 +51,41 @@ class Email {
         // 6.Enviar el email
         $phpmailer->send();
     }
+    // Email para resetear password
+    public function sendPasswordResetEmail(){
+        // 1.Creamos una nueva instancia de PHPMailer y configuramos
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = 2525;
+        $phpmailer->Username = '70eb6afdbcce4d';
+        $phpmailer->Password = '1fd19d280b21d7';
+
+        // 2.Configurar encabezado del email
+        $phpmailer->setFrom('cuentas@BarberShop.com');
+        $phpmailer->addAddress($this->email);
+        $phpmailer->Subject = 'Reestablecer contraseña';
+
+        // 3.Habilitar HTML
+        $phpmailer->isHTML(true);
+        $phpmailer->CharSet = 'UTF-8';
+
+        // 4.Definir el contenido
+        $contenido  = '<html>';
+        $contenido .= '<body>';
+        $contenido .= "<p><strong>Hola " . $this->nombre . "</strong>, has solicitado reestablecer tu contraseña en <b>BarberShopElite</b>. Para continuar haz click en el siguiente enlace:</p>";
+        $contenido .= "<p><a href='http://localhost:3000/reset-password?token=" . $this->token . "' target='_blank'>Reestablecer contraseña</a></p>";
+        $contenido .= "<p>Si tú no solicitaste este cambio puedes ignorar este mensaje.</p>";
+        $contenido .= '</body>';
+        $contenido .= '</html>';
+
+        // 5.Agregamos el contenido al cuerpo del correo
+        $phpmailer->Body = $contenido;
+        $phpmailer->AltBody = 'Este mensaje es para que puedas reestablecer la contraseña de tu cuenta en BarberShopElite';
+
+        // 6.Enviar el email
+        $resultado = $phpmailer->send();
+        return $resultado;
+    }
 }

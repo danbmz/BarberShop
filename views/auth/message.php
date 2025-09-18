@@ -1,4 +1,4 @@
 <main class="contenedor">
-    <h1 class="title-page">Confirma tu cuenta</h1>
-    <p>Hemos enviado las instrucciones a tu correo electronico, revisalo para poder continuar con tu registro.</p>
+    <h1 class="title-page"><?php echo $type === "0" ? $title0 : $title1; ?></h1>
+    <p><?php echo $type === "0" ? $mensaje0 : $mensaje1; ?></p>
 </main>
