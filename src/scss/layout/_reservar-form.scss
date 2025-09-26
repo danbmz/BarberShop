@@ -1,0 +1,108 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+//  /* Contenedor del stepper */
+.stepper {
+    max-width: 720px;
+    margin: 0 auto 28px;
+    padding: 20px;
+    background: v.$blanco;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+
+.stepper-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    padding: 20px 10px;
+}
+
+//   /* cada paso ocupa su "columna" */
+.step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 0;
+    position: relative;
+}
+
+//   /* Punto (círculo) */
+.step-button {
+    background: #e6e9ef;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: inline-grid;
+    place-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.15s ease;
+    color: #334155;
+}
+
+.step-button:focus {
+    outline: 3px solid rgba(59, 130, 246, 0.18);
+}
+
+//   /* Etiqueta con texto debajo o al lado */
+.step-label {
+    font-size: 14px;
+    color: #475569;
+    user-select: none;
+    white-space: nowrap;
+}
+
+//   /* Estados activos / completado */
+.step.active .step-button {
+    background: linear-gradient(90deg, #3b82f6, v.$lila);
+    color: v.$blanco;
+    transform: scale(1.06);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.18);
+}
+
+.step.completed .step-button {
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+    color: white;
+}
+
+//   /* Layout de etiqueta debajo del punto para pantallas pequeñas */
+.step-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+//   /* Botones de navegación del formulario (ejemplo) */
+.controls {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 18px;
+    &.space {
+        justify-content: space-between;
+    }
+}
+
+.btn.secondary {
+    background: #eef2ff;
+    color: v.$lila;
+}
+
+// Contenedor de Cards que muestra los servicios
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    @include m.tablet {
+        @include m.grid(2, 2rem);
+    }
+}

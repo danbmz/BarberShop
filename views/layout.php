@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BarberShop Elite</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" href="/build/css/app.css">
 </head>
 <body>
     <header class="header">
@@ -20,7 +20,7 @@
                     <a href="/services">Servicios</a>
                     <a href="/aboutUs">Nosotros</a>
                     <a href="/contact">Contacto</a>
-                    <a href="/login" class="login-button">iniciar sesión</a>   
+                    <a href="/login" class="login-button"><?php echo $isLoggedIn ? $nombreUsuario : 'Iniciar Sesión'; ?></a>   
                 </nav>
 
                 <div class="menu-despegable">
@@ -82,4 +82,10 @@
         </div>
     </footer>
 </body>
+
+<?php 
+    // Agregamos JS de forma condicional
+    echo $script ?? '';
+?>
+
 </html>

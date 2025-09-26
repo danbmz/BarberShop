@@ -4,6 +4,7 @@ import { glob } from "glob";
 import { src, dest, watch, series } from "gulp";
 import * as dartSass from "sass";
 import gulpSass from "gulp-sass";
+import babel from "gulp-babel";
 import terser from "gulp-terser";
 import sharp from "sharp";
 
@@ -27,7 +28,10 @@ export function css(done) {
 }
 
 export function js(done) {
-    src(paths.js).pipe(terser()).pipe(dest("./public/build/js"));
+    src(paths.js)
+        .pipe(babel({ presets: ["@babel/preset-env"] }))
+        .pipe(terser())
+        .pipe(dest("./public/build/js"));
     done();
 }
 

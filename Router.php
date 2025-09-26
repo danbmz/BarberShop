@@ -21,7 +21,7 @@ class Router
     {
         
         // Proteger Rutas...
-        session_start();
+        session_start(); // Activa erl session de manera global, todas las paginas pueden acceder al session;
 
         // Arreglo de rutas protegidas...
         // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
@@ -47,10 +47,14 @@ class Router
     }
 
     public function render($view, $datos = [])
-    {
+    {   
+        // Variables para mostrar el nombre en todas las pagina cuando se ha iniciado sesion.
+        $datos['isLoggedIn'] = $_SESSION['login'] ?? null; // Insertamos dentro de $datos para menor dispersion de variables
+        $datos['nombreUsuario'] = $_SESSION['nombre'] ?? null;
 
         // Leer lo que le pasamos  a la vista
         foreach ($datos as $key => $value) {
+            if (in_array($key, ['contenido'])) continue; //Evita reescribir la variable $contenido en caso de venir una con el mismo nombre
             $$key = $value;  // Doble signo de dolar significa: variable variable, básicamente nuestra variable sigue siendo la original, pero al asignarla a otra no la reescribe, mantiene su valor, de esta forma el nombre de la variable se asigna dinamicamente
         }
 
