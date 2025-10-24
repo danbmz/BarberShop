@@ -30,10 +30,21 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.5rem;
+    @include m.tablet {
+        gap: 1rem;
+    }
     h1 {
         color: v.$blanco;
-        font-size: 3rem;
+    }
+}
+.logo-icon {
+    color: v.$lila;
+    width: 25px;
+    height: 25px;
+    @include m.tablet {
+        width: 36px;
+        height: 36px;
     }
 }
 .nav {
@@ -45,15 +56,15 @@ main {
     }
 }
 .menu-despegable {
-    background-color: v.$lila;
-    color: v.$blanco;
-    text-align: center;
-    padding: 0.5rem;
-    font-weight: bold;
-    cursor: pointer;
     @include m.tablet {
         display: none;
     }
+}
+.menu-despegable button {
+    cursor: pointer;
+    background-color: transparent;
+    color: v.$lila;
+    border: none;
 }
 .icon {
     color: v.$lila;

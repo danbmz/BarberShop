@@ -9,6 +9,7 @@
     background: v.$blanco;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    // display: none;
 }
 
 .stepper-nav {
@@ -105,4 +106,15 @@
     @include m.tablet {
         @include m.grid(2, 2rem);
     }
+}
+
+// SECCION DE RESUMEN
+.reservation-summary {
+    padding: 0 2rem;
+    border: 1px solid v.$gris;
+    border-radius: 8px;
+}
+.summary-span {
+    font-weight: bold;
+    color: v.$lila;
 }

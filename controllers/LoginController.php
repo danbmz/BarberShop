@@ -25,6 +25,7 @@ class LoginController {
                         session_start();
                         $_SESSION['id'] = $usuario->id;
                         $_SESSION['nombre'] = $usuario->nombre;
+                        $_SESSION['apellido'] = $usuario->apellido;
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['login'] = true;
                         
@@ -49,7 +50,8 @@ class LoginController {
         ]);
     }
     public static function logout(){
-        echo 'Desde logout...';
+        $_SESSION = [];
+        header('Location: /');
     }
     // Funciones asociadas a la creacion de cuenta
     public static function register(Router $router){

@@ -38,15 +38,16 @@ $router->post('/reset-password', [LoginController::class, 'reset']);
 $router->get('/user/account', [UserController::class, 'account']);
 $router->get('/admin', [AdminController::class, 'dashboard']);
 
+// API CITAS
+$router->get('/api/services', [APIController::class, 'index']);
+$router->post('/api/reservation', [APIController::class, 'post']);
+
 // Sub-rutas usuario y admin
 // $router->get('/user/reservas/actuales', [UserController::class, 'reservasActuales']);
 // $router->get('/user/reservas/anteriores', [UserController::class, 'reservasAnteriores']);
 
 // $router->get('/admin/usuarios', [AdminController::class, 'usuarios']);
 // $router->get('/admin/reservas', [AdminController::class, 'reservas']);
-
-// API CITAS
-$router->get('/api/services', [APIController::class, 'index']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

@@ -6,10 +6,15 @@
         2: document.getElementById("panel-2"),
         3: document.getElementById("panel-3"),
     };
+    // Desabilotamos boton
+    const btn1 = document.querySelector("#next-1");
+    btn1.disabled = true;
+
     let current = 1;
     // 2. Elementos para las cards del panel Servicios
     const reservation = {
-        nomrbe: "",
+        id: "",
+        nombre: "",
         fecha: "",
         hora: "",
         servicios: [],
@@ -50,23 +55,31 @@
     }
 
     // 1. listeners en los botones de los pasos (para navegación directa entre panels)
-    document.querySelectorAll(".step-button").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            const parent = e.target.closest(".step");
-            if (!parent) return;
-            const step = Number(parent.dataset.step);
-            goTo(step);
-        });
-    });
+    // document.querySelectorAll(".step-button").forEach((btn) => {
+    //     btn.addEventListener("click", (e) => {
+    //         const parent = e.target.closest(".step");
+    //         if (!parent) return;
+    //         const step = Number(parent.dataset.step);
+    //         goTo(step);
+    //     });
+    // });
 
     // 1. botones siguiente/atrás
     document.getElementById("next-1").addEventListener("click", () => goTo(2));
-    document.getElementById("next-2").addEventListener("click", () => goTo(3));
+    document.getElementById("next-2").addEventListener("click", () => {
+        const validate = getInfoReservation();
+        if (validate.valid) {
+            goTo(3);
+            reservationSummary();
+            console.log(reservation);
+        }
+    });
     document.getElementById("back-2").addEventListener("click", () => goTo(1));
     document.getElementById("back-3").addEventListener("click", () => goTo(2));
     document.getElementById("confirm").addEventListener("click", () => {
-        // Logica para mostrar mensaje de confirmacion y enviar formulario
-        alert("Reserva confirmada (ejemplo).");
+        // Enviar datos al Backend
+        submitReservationAPI();
+        // Modal de confirmacion
     });
 
     // 2. CONSULTAS HACIA LA API para traer los servicios
@@ -77,6 +90,44 @@
             renderServiceCards(data);
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    // 2. ENVIANDO datos de reservacion a la API
+    async function submitReservationAPI() {
+        const { id, nombre, fecha, hora, servicios } = reservation;
+        const idService = servicios.map((servicio) => servicio.id);
+
+        const datos = new FormData();
+        datos.append("usuarioId", id);
+        datos.append("fecha", fecha);
+        datos.append("hora", hora);
+        datos.append("idService", idService);
+
+        const url = "http://localhost:3000/api/reservation";
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                body: datos,
+            });
+
+            const result = await response.json();
+            if (result.respuesta.resultado) {
+                Swal.fire({
+                    title: "Good job!",
+                    text: "Tu reservación ha sido creada!",
+                    icon: "success",
+                    button: "OK",
+                }).then(() => {
+                    window.location.reload();
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Algo salio mal! Intentalo de nuevo.",
+            });
         }
     }
 
@@ -125,7 +176,101 @@
             cardSelected.classList.add("selected");
         }
 
-        console.log(reservation);
+        // Habilitar boton
+        if (reservation.servicios.length > 0) {
+            btn1.disabled = false;
+        } else {
+            btn1.disabled = true;
+        }
+    }
+
+    // 2. RECOPILAR FECHA Y HORA Y AGREGARLOS AL OBJETO
+    function getInfoReservation() {
+        // Obtenemos el nombre y id y los agregamos al objeto
+        reservation.nombre = document.querySelector("#nombre").value;
+        reservation.id = document.querySelector("#id").value;
+
+        const date = document.querySelector("#fecha").value;
+        const hour = document.querySelector("#hora").value;
+
+        const result = validateDateTime(date, hour);
+        if (result.valid) {
+            reservation.fecha = date;
+            reservation.hora = hour;
+        } else {
+            showMessageError(result.message);
+        }
+        return result;
+    }
+
+    // 2. VALIDA LOS DATOS DE FECHA Y HORA
+    function validateDateTime(date, time) {
+        const minTime = "09:00";
+        const maxTime = "20:00";
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Normalizamos a inicio del día
+
+        const inputDate = new Date(date);
+        inputDate.setHours(0, 0, 0, 0);
+
+        // 1. Validar que la fecha no sea anterior a hoy
+        if (inputDate < today || time < minTime || time > maxTime) {
+            return {
+                valid: false,
+                message: "Elige una fecha y hora correcta.",
+            };
+        }
+
+        // ✅ Si pasa todas las validaciones
+        return { valid: true, message: "Fecha y hora válidas." };
+    }
+
+    // 2. Agrega mensajes de error en la UI
+    function showMessageError(message) {
+        const div = document.querySelector("#errorMessage");
+        div.classList.add("error");
+        div.textContent = message;
+        setTimeout(() => {
+            div.style.display = "none";
+        }, 3000);
+    }
+
+    //2. MOSTRAR RESUMEN DE LA RESERVACION
+    function reservationSummary() {
+        const { nombre, fecha, hora, servicios } = reservation;
+        const container = document.querySelector(".reservation-summary");
+        // Limpiar el HTML
+        container.innerHTML = "";
+        // Creamos contenedor para la card del resumen
+        const card = document.createElement("DIV");
+        card.classList.add("reservation-card");
+        // Formateamos Fecha
+        const date = new Date(fecha);
+        date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+        const fechaFormateada = date.toLocaleDateString("es-MX", {
+            dateStyle: "long",
+        });
+        // Formateamos nombre
+        const name = nombre.split(" ")[0];
+        const nombreFormateado = name.slice(0, 1).toUpperCase() + name.slice(1);
+        card.innerHTML = `
+        <div class="summary-section">
+            <p id="summaryDate">${nombreFormateado} tu próxima cita será el día <span class="summary-span">${fechaFormateada} a las ${hora} horas</span>. Los servicios que seleccionaste son los siguientes:</p>
+        </div>
+        `;
+
+        servicios.forEach(({ nombre, precio }) => {
+            const div = document.createElement("DIV");
+            div.classList.add("card-content");
+            div.innerHTML = `
+            <h3><span class="icon">✂️</span>${nombre}</h3>
+            <div class="details">
+                <span>💲 ${precio}</span>
+            </div>
+            `;
+            card.appendChild(div);
+        });
+        container.appendChild(card);
     }
 
     // iniciar en paso 1 & el resto de funciones
