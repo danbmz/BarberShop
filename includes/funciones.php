@@ -13,6 +13,14 @@ function s($html) : string {
     return $s;
 }
 
+// Ayuda a mostrar la suma total de servicios
+function isLast(string $actual, string $next) : bool{
+    if($actual !== $next){
+        return true;
+    }
+    return false;
+}
+
 // Revisa que el usuario este autenticado
 function isAuth() : void {
     if(!isset($_SESSION['login'])){

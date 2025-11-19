@@ -1,4 +1,35 @@
 (function () {
+    // Boton para mostrar el modal reserva
+    const newBtn = document.querySelector("#new-cita");
+    newBtn.onclick = abrirModal;
+
+    // Boton para cerrar el modal de reserva
+    const closeBtn = document.querySelector("#next-0");
+    closeBtn.onclick = cerrarModal;
+
+    // Funcion para abrir el modal
+    function abrirModal() {
+        const modal = document.querySelector(".modal");
+        modal.classList.remove("fade-Out");
+        setTimeout(() => {
+            modal.style.display = "block";
+            const body = document.querySelector("body");
+            body.classList.add("overflow-hidden"); // Cuando se genera el modal, evitamos que puedan dar scroll
+        }, 300);
+    }
+
+    // Funcion para cerrar modal
+    function cerrarModal() {
+        const modal = document.querySelector(".modal");
+        modal.classList.add("fade-Out");
+        setTimeout(() => {
+            modal.style.display = "none";
+            // modal.classList.remove("fade-Out");
+            const body = document.querySelector("body");
+            body.classList.remove("overflow-hidden");
+        }, 300);
+    }
+
     // 1. Elementos para tabs y panel del form
     const tabs = Array.from(document.querySelectorAll(".step"));
     const panels = {
@@ -6,7 +37,8 @@
         2: document.getElementById("panel-2"),
         3: document.getElementById("panel-3"),
     };
-    // Desabilotamos boton
+
+    // Desabilotamos boton del primer panel
     const btn1 = document.querySelector("#next-1");
     btn1.disabled = true;
 

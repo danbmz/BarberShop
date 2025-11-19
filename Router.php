@@ -19,14 +19,11 @@ class Router
 
     public function comprobarRutas()
     {
-        
-        // Proteger Rutas...
+        // Proteger Rutas de Admin...
         session_start(); // Activa erl session de manera global, todas las paginas pueden acceder al session;
-
+        $admin = $_SESSION['admin'] ?? null;
         // Arreglo de rutas protegidas...
-        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
-
-        // $auth = $_SESSION['login'] ?? null;
+        $rutas_protegidas = ['/admin', '/api/delete', '/admin/services', '/admin/services/create'];
 
         $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
@@ -37,6 +34,10 @@ class Router
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
 
+        // 5. Restringimos el acceso a las rutas protegidas
+        if(in_array($currentUrl, $rutas_protegidas) && !$admin){
+            header('Location: /');
+        }
 
         if ( $fn ) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
@@ -50,6 +51,7 @@ class Router
     {   
         // Variables para mostrar el nombre en todas las pagina cuando se ha iniciado sesion.
         $datos['isLoggedIn'] = $_SESSION['login'] ?? null; // Insertamos dentro de $datos para menor dispersion de variables
+        $datos['isAdmin'] = $_SESSION['admin'] ?? null;
         $datos['nombreUsuario'] = $_SESSION['nombre'] ?? null;
 
         // Leer lo que le pasamos  a la vista

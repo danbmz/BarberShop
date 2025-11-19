@@ -1,0 +1,89 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.nav-admin {
+    background-color: v.$lila;
+    border-radius: 12px;
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    justify-content: space-around;
+    // flex-direction: column;
+    // align-items: center;
+    // gap: 1rem;
+    margin-bottom: 2rem;
+}
+.nav-e {
+    font-size: 1.3rem;
+    font-weight: bold;
+    @include m.tablet {
+        font-size: 1.5rem;
+    }
+}
+.nav-e:hover {
+    color: v.$blanco;
+    transform: scale(1.1);
+}
+
+.citas-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    background-color: v.$blanco;
+    border-radius: 12px 12px 0 0;
+    span {
+        font-weight: bold;
+        color: v.$lila;
+    }
+    p {
+        margin: 0;
+    }
+    // querys
+    @include m.tablet {
+        padding: 2rem 2rem 1.5rem 2rem;
+    }
+}
+.citas-title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0;
+    background-color: v.$blanco;
+    @include m.tablet {
+        font-size: 2rem;
+    }
+}
+.citas-servicios {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: v.$blanco;
+    p {
+        margin: 0;
+    }
+    @include m.tablet {
+        padding: 2rem 2rem 1.5rem 2rem;
+    }
+}
+.total-div {
+    display: flex;
+    justify-content: right;
+}
+.total {
+    margin-top: 1.3rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: v.$lila;
+    @include m.tablet {
+        font-size: 2rem;
+    }
+}
+.mensaje-0 {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: v.$lila;
+    color: v.$blanco;
+    border-radius: 12px;
+    margin-top: 2rem;
+}

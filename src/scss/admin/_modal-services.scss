@@ -1,0 +1,15 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.panel-service {
+    height: 330px;
+    max-width: 720px;
+    margin: 0 auto 28px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    @include m.desktop {
+        height: 340px;
+    }
+}

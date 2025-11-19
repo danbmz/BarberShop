@@ -1,0 +1,33 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+// clase para mostrar el componentes como un modal
+.modal {
+    padding-top: 6rem;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(v.$negro, 0.5);
+    animation: fadeIn ease-in 0.3s; // Agregamos la animacion o keyframes con la propiedad animation.
+    &.fade-Out {
+        animation: fadeOut ease-in 0.3s;
+    }
+}
+
+// Animaciones de desvanecimiento
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

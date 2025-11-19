@@ -3,13 +3,15 @@
 
 //  /* Contenedor del stepper */
 .stepper {
+    z-index: 2;
+    height: 500px;
     max-width: 720px;
     margin: 0 auto 28px;
     padding: 20px;
     background: v.$blanco;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
-    // display: none;
+    overflow-y: scroll;
 }
 
 .stepper-nav {
@@ -85,8 +87,7 @@
 //   /* Botones de navegación del formulario (ejemplo) */
 .controls {
     display: flex;
-    gap: 12px;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 18px;
     &.space {
         justify-content: space-between;

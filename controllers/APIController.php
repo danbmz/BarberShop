@@ -30,4 +30,20 @@ class APIController{
         
         echo json_encode(['respuesta' => $resultado]);
     }
+    public static function delete(){
+        $id = $_POST['id'];
+        $cita = Cita::find($id);
+        $cita->eliminar();
+        if ($cita) {
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
+    }
+    
+    // Metodo que guarda nuevos registros de Servicios
+    public static function saveServices(){
+        $service = new Services($_POST);
+        // Antes de guardar deberiamos realizar una validacion de los datos recibidos
+        $resultado = $service->guardar();
+        echo json_encode(['respuesta' => $resultado]);
+    }
 }

@@ -64,3 +64,18 @@
     background-color: v.$blanco;
     color: v.$negro;
 }
+// Boton de eliminar
+.btn-delete {
+    background-color: v.$error;
+    color: v.$blanco;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 1.4rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    @include m.tablet {
+        font-size: 1.5rem;
+    }
+}

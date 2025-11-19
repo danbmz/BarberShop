@@ -55,6 +55,14 @@ main {
         gap: 2rem;
     }
 }
+.icon-perfil {
+    padding: 0.7rem;
+    border: 1px solid v.$blanco;
+    border-radius: 50%;
+}
+.icon-perfil:hover {
+    border-color: v.$lila;
+}
 .menu-despegable {
     @include m.tablet {
         display: none;
