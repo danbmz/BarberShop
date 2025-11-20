@@ -5,7 +5,7 @@
 .stepper {
     z-index: 2;
     height: 500px;
-    max-width: 720px;
+    width: min(720px, 95%);
     margin: 0 auto 28px;
     padding: 20px;
     background: v.$blanco;
