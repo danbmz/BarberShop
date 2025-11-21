@@ -40,9 +40,19 @@ class APIController{
     }
     
     // Metodo que guarda nuevos registros de Servicios
-    public static function saveServices(){
+    public static function createServices(){
         $service = new Services($_POST);
         // Antes de guardar deberiamos realizar una validacion de los datos recibidos
+        $resultado = $service->guardar();
+        echo json_encode(['respuesta' => $resultado]);
+    }
+
+    public static function updateService(){
+        $id = $_POST['id'];
+        $service = Services::find($id);
+        // Sincronizamos el registro obtenido con la nueva info del Form
+        $service->sincronizar($_POST);
+        // Guardamos los cambios
         $resultado = $service->guardar();
         echo json_encode(['respuesta' => $resultado]);
     }
