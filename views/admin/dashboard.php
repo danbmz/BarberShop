@@ -56,7 +56,7 @@
                                     </div>
                                     <!-- Boton para eliminar la cita -->
                                     <div class="div-delete">
-                                        <form method="post" action="/api/delete">
+                                        <form method="post" action="/api/reservation/delete">
                                             <input type="hidden" value="<?php echo s($cita->id) ?>" name="id">
                                             <input type="submit" value="Eliminar" class="btn-delete">
                                         </form>

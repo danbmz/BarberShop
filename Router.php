@@ -23,7 +23,7 @@ class Router
         session_start(); // Activa erl session de manera global, todas las paginas pueden acceder al session;
         $admin = $_SESSION['admin'] ?? null;
         // Arreglo de rutas protegidas...
-        $rutas_protegidas = ['/admin', '/api/delete', '/admin/services', '/admin/services/create'];
+        $rutas_protegidas = ['/admin', '/api/reservation/delete', '/admin/services', '/admin/services/create'];
 
         $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];

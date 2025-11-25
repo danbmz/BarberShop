@@ -38,24 +38,19 @@ $router->post('/reset-password', [LoginController::class, 'reset']);
 // Panel de usuario y Panel Administrativo - RUTAS PRIVADAS
 $router->get('/user/account', [UserController::class, 'account']);
 $router->get('/admin', [AdminController::class, 'dashboard']);
-// Sub-rutas usuario y admin
+// Sub-rutas admin / Panel que muestra la lista de servicios
 $router->get('/admin/services', [ServiceController::class, 'services']);
-$router->post('/admin/services/delete', [ServiceController::class, 'delete']);
-// $router->get('/admin/services/create', [ServiceController::class, 'create']);
-// $router->post('/admin/services/create', [ServiceController::class, 'create']);
-// $router->get('/admin/services/update', [ServiceController::class, 'update']);
-// $router->post('/admin/services/update', [ServiceController::class, 'update']);
 
 // API CITAS
-// Listamos las citas - User
+// Listamos los servicios - User view
 $router->get('/api/services', [APIController::class, 'index']);
-// Creamos un nuevo registro y actualizamos - Admin
+// Crea - Actualiza y Elimina un servicio - Admin
 $router->post('/api/services/create', [APIController::class, 'createServices']);
 $router->post('/api/services/update', [APIController::class, 'updateService']);
-// Creamos una nueva reservacion - User
-$router->post('/api/reservation', [APIController::class, 'post']);
-// Elimina una cita - Admin
-$router->post('/api/delete', [APIController::class, 'delete']);
+$router->post('/api/services/delete', [APIController::class, 'deleteService']);
+// Creamos y Elimina una cita - User view y Admin view
+$router->post('/api/reservation/create', [APIController::class, 'createReservation']);
+$router->post('/api/reservation/delete', [APIController::class, 'deleteReservation']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

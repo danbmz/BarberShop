@@ -1,9 +1,9 @@
 (function () {
-    // Recuperar botones que activan el modal - Nuevo servicio
+    // Boton que activa el modal - Nuevo servicio
     const newServiceBtn = document.querySelector("#newServiceBtn");
     newServiceBtn.onclick = openModal;
 
-    // Botones para Editar cards de Servicio
+    // Botones para Actualizar un Servicio
     const editBtns = document.querySelectorAll("#editServiceBtn");
     editBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -69,13 +69,22 @@
                     if (!validated.valid) {
                         showMessageError(validated.mensaje);
                     } else {
-                        updateServiceInformation(data);
+                        updateService(data);
                     }
                 });
 
             // Seleccionamos el boton Cancelar y agregamos funcion closeModal()
             const btnCancel = document.querySelector("#cancelar-btn");
             btnCancel.onclick = closeModal;
+        });
+    });
+
+    // Botones para Eliminar un Servicio
+    const deleteBtns = document.querySelectorAll("#delSerBtn");
+    deleteBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const id = btn.dataset.id;
+            deleteService(id);
         });
     });
 
@@ -135,7 +144,7 @@
                 if (!validated.valid) {
                     showMessageError(validated.mensaje);
                 } else {
-                    createServiceInformation(data);
+                    createService(data);
                 }
             });
 
@@ -151,7 +160,7 @@
             modal?.remove(); // ?: verifica si existe el elemento 'modal', y si si existe, lo elimina.
             const body = document.querySelector("body");
             body.classList.remove("overflow-hidden");
-        }, 500);
+        }, 300);
     }
 
     function validServiceInformation(data) {
@@ -173,7 +182,7 @@
         return { valid: true };
     }
 
-    async function createServiceInformation(data) {
+    async function createService(data) {
         const { nombre, precio } = data;
         const datos = new FormData();
         datos.append("nombre", nombre);
@@ -185,8 +194,8 @@
                 method: "POST",
                 body: datos,
             });
-
             const result = await response.json();
+
             if (result.respuesta.resultado) {
                 Swal.fire({
                     title: "Good job!",
@@ -206,7 +215,7 @@
         }
     }
 
-    async function updateServiceInformation(data) {
+    async function updateService(data) {
         const { nombre, precio, id } = data;
         const datos = new FormData();
         datos.append("id", id);
@@ -226,6 +235,38 @@
                 Swal.fire({
                     title: "Good job!",
                     text: "Tu reservación ha sido creada!",
+                    icon: "success",
+                    button: "OK",
+                }).then(() => {
+                    window.location.reload();
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Algo salio mal! Intentalo de nuevo.",
+            });
+        }
+    }
+
+    async function deleteService(id) {
+        const datos = new FormData();
+        datos.append("id", id);
+
+        const url = "http://localhost:3000/api/services/delete";
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                body: datos,
+            });
+
+            const result = await response.json();
+
+            if (result.respuesta) {
+                Swal.fire({
+                    title: "Good job!",
+                    text: "Servicio Eliminado con exito!",
                     icon: "success",
                     button: "OK",
                 }).then(() => {

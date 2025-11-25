@@ -12,7 +12,7 @@ class APIController{
         echo json_encode($servicios); //Transformamos en formato JSON
     }
     
-    public static function post(){
+    public static function createRervation(){
         // Guardamos cita en tabla de citas
         $cita = new Cita($_POST);
         $resultado = $cita->guardar();
@@ -30,7 +30,7 @@ class APIController{
         
         echo json_encode(['respuesta' => $resultado]);
     }
-    public static function delete(){
+    public static function deleteReservation(){
         $id = $_POST['id'];
         $cita = Cita::find($id);
         $cita->eliminar();
@@ -54,6 +54,13 @@ class APIController{
         $service->sincronizar($_POST);
         // Guardamos los cambios
         $resultado = $service->guardar();
+        echo json_encode(['respuesta' => $resultado]);
+    }
+
+    public static function deleteService(){
+        $id = $_POST['id'];
+        $service = Services::find($id);
+        $resultado = $service->eliminar();
         echo json_encode(['respuesta' => $resultado]);
     }
 }

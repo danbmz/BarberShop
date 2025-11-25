@@ -136,7 +136,7 @@
         datos.append("hora", hora);
         datos.append("idService", idService);
 
-        const url = "http://localhost:3000/api/reservation";
+        const url = "http://localhost:3000/api/reservation/create";
         try {
             const response = await fetch(url, {
                 method: "POST",
