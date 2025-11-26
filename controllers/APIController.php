@@ -12,7 +12,7 @@ class APIController{
         echo json_encode($servicios); //Transformamos en formato JSON
     }
     
-    public static function createRervation(){
+    public static function createReservation(){
         // Guardamos cita en tabla de citas
         $cita = new Cita($_POST);
         $resultado = $cita->guardar();
