@@ -217,7 +217,7 @@
     // CONSULTA HACIA LA API para traer los servicios
     async function getServicesAPI() {
         try {
-            const result = await fetch("http://localhost:3000/api/services");
+            const result = await fetch(`/api/services`);
             const data = await result.json();
             renderServiceCards(data);
         } catch (error) {
@@ -236,7 +236,7 @@
         datos.append("hora", hora);
         datos.append("idService", idService);
 
-        const url = "http://localhost:3000/api/reservation/create";
+        const url = `${location.origin}/api/reservation/create`;
         try {
             const response = await fetch(url, {
                 method: "POST",

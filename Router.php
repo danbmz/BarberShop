@@ -25,7 +25,7 @@ class Router
         // Arreglo de rutas protegidas...
         $rutas_protegidas = ['/admin', '/api/reservation/delete', '/admin/services', '/admin/services/create'];
 
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $currentUrl = strtok($_SERVER['REQUEST_URI'], '?') ?? '/'; // Obtiene la URL actual sin parametros GET
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {

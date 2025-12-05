@@ -1,0 +1,1 @@
+"use strict";var fecha=document.querySelector("#fecha");fecha.addEventListener("input",function(e){var t=e.target.value;window.location="?fecha=".concat(t)});

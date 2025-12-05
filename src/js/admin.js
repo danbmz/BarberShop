@@ -188,7 +188,7 @@
         datos.append("nombre", nombre);
         datos.append("precio", precio);
 
-        const url = "http://localhost:3000/api/services/create";
+        const url = `${location.origin}/api/services/create`;
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -222,7 +222,7 @@
         datos.append("nombre", nombre);
         datos.append("precio", precio);
 
-        const url = "http://localhost:3000/api/services/update";
+        const url = `${location.origin}/api/services/update`;
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -254,7 +254,7 @@
         const datos = new FormData();
         datos.append("id", id);
 
-        const url = "http://localhost:3000/api/services/delete";
+        const url = `${location.origin}/api/services/delete`;
         try {
             const response = await fetch(url, {
                 method: "POST",

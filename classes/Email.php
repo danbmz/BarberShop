@@ -19,11 +19,11 @@ class Email {
         // 1.Creamos una nueva instancia de PHPMailer y configuramos
         $phpmailer = new PHPMailer();
         $phpmailer->isSMTP();
-        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->Host = $_ENV['EMAIL_HOST'];
         $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 2525;
-        $phpmailer->Username = '70eb6afdbcce4d';
-        $phpmailer->Password = '1fd19d280b21d7';
+        $phpmailer->Port = $_ENV['EMAIL_PORT'];
+        $phpmailer->Username = $_ENV['EMAIL_USER'];
+        $phpmailer->Password = $_ENV['EMAIL_PASS'];
 
         // 2.Configurar encabezado del email
         $phpmailer->setFrom('cuentas@BarberShop.com');
@@ -38,7 +38,7 @@ class Email {
         $contenido  = '<html>';
         $contenido .= '<body>';
         $contenido .= "<p><strong>Hola " . $this->nombre . "</strong>, has creado una cuenta en <b>BarberShopElite</b>. Ahora solo debes confirmarla dando click en el siguiente enlace:</p>";
-        $contenido .= "<p><a href='http://localhost:3000/confirm-account?token=" . $this->token . "' target='_blank'>Confirmar cuenta</a></p>";
+        $contenido .= "<p><a href='" . $_ENV['APP_URL'] . "/confirm-account?token=" . $this->token . "' target='_blank'>Confirmar cuenta</a></p>";
         $contenido .= "<p>Si tú no solicitaste esta cuenta, simplemente ignora este mensaje.</p>";
         $contenido .= '</body>';
         $contenido .= '</html>';
@@ -56,11 +56,11 @@ class Email {
         // 1.Creamos una nueva instancia de PHPMailer y configuramos
         $phpmailer = new PHPMailer();
         $phpmailer->isSMTP();
-        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->Host = $_ENV['EMAIL_HOST'];
         $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 2525;
-        $phpmailer->Username = '70eb6afdbcce4d';
-        $phpmailer->Password = '1fd19d280b21d7';
+        $phpmailer->Port = $_ENV['EMAIL_PORT'];
+        $phpmailer->Username = $_ENV['EMAIL_USER'];
+        $phpmailer->Password = $_ENV['EMAIL_PASS'];
 
         // 2.Configurar encabezado del email
         $phpmailer->setFrom('cuentas@BarberShop.com');
@@ -75,7 +75,7 @@ class Email {
         $contenido  = '<html>';
         $contenido .= '<body>';
         $contenido .= "<p><strong>Hola " . $this->nombre . "</strong>, has solicitado reestablecer tu contraseña en <b>BarberShopElite</b>. Para continuar haz click en el siguiente enlace:</p>";
-        $contenido .= "<p><a href='http://localhost:3000/reset-password?token=" . $this->token . "' target='_blank'>Reestablecer contraseña</a></p>";
+        $contenido .= "<p><a href='" . $_ENV['APP_URL'] . "/reset-password?token=" . $this->token . "' target='_blank'>Reestablecer contraseña</a></p>";
         $contenido .= "<p>Si tú no solicitaste este cambio puedes ignorar este mensaje.</p>";
         $contenido .= '</body>';
         $contenido .= '</html>';

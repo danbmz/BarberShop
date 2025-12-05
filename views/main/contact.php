@@ -1,32 +1,32 @@
 <main class="contenedor">
-    <div class="contact-hero">
-        <h2 class="contact-title">Contáctanos</h2>
+    <div class="contact-hero sections">
+        <h2>Contáctanos</h2>
         <p>¿Estas interesado en nuestros servicios? Contáctanos para reservar tu cita o <a href="/register" class="contact-link">crea una cuenta</a> para reservarla cuando tú quieras, también resolveremos cualquier duda que tengas o si deseas trabajar con nosotros. <span class="contact-span">Solo rellena el formulario.</span></p>
     </div>
 
-    <div class="contact-contenedor">
+    <div class="contact-contenedor sections">
         <section class="contact-form">
             <h2>Envíanos un Mensaje</h2>
-            <form action="#" method="POST">  
+            <form action="#" method="POST" class="general-form">  
                 <div class="form-row">
-                <div class="form-group-contact">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
-                </div>
-                <div class="form-group-contact">
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Número de telefono" required>
-                </div>
-                </div>
-
-                <div class="form-group-contact">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    <div class="form-group">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Número de telefono" class="form-input" required>
+                    </div>
                 </div>
 
-                <div class="form-group-contact">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre el servicio que necesitas..." required></textarea>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre el servicio que necesitas..." class="form-input" required></textarea>
                 </div>
 
                 <button type="submit" class="btn">Enviar Mensaje</button>
